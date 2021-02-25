@@ -1,7 +1,8 @@
 package aronque.backend.resources;
 
+import aronque.backend.entities.Client;
 import aronque.backend.entities.Order;
-import aronque.backend.services.OrderService;
+import aronque.backend.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,27 +13,27 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/orders")
-public class OrderResource {
+@RequestMapping(value = "/clients")
+public class ClientResource {
 
     @Autowired
-    private OrderService service;
+    private ClientService service;
 
     @GetMapping
-    public ResponseEntity<List<Order>> findAll() {
-        List<Order> list = service.findAll();
+    public ResponseEntity<List<Client>> findAll() {
+        List<Client> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Order> findById(@PathVariable Long id) {
-        Order obj = service.findById(id);
+    public ResponseEntity<Client> findById(@PathVariable Long id) {
+        Client obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
-    @GetMapping(value = "/client/{clientId}")
-    public ResponseEntity<List<Order>> findByClient(@PathVariable Long clientId) {
-        List<Order> list = service.findByClient(clientId);
+    @GetMapping(value = "/{id}/orders")
+    public ResponseEntity<List<Order>> getOrders(@PathVariable Long id) {
+        List<Order> list = service.findById(id).getOrders();
         return ResponseEntity.ok().body(list);
     }
 }

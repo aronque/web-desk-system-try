@@ -1,6 +1,7 @@
 package aronque.backend.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -59,7 +60,7 @@ public class Order implements Serializable {
     }
 
     public void setProductList(Set<OrderItem> productList) {
-        this.productList = productList;
+        this.productList.addAll(productList);
     }
 
     @Override

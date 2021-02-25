@@ -68,6 +68,7 @@ public class Client implements Serializable {
         this.address = address;
     }
 
+    @JsonIgnore
     public List<Order> getOrders() {
         return orderList;
     }
