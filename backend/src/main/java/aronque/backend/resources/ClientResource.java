@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/clients")
@@ -33,7 +35,8 @@ public class ClientResource {
 
     @GetMapping(value = "/{id}/orders")
     public ResponseEntity<List<Order>> getOrders(@PathVariable Long id) {
-        List<Order> list = service.findById(id).getOrders();
+        Optional<Client> obj = Optional.ofNullable(service.findById(id));
+        List<Order> list = obj.get().getOrders();
         return ResponseEntity.ok().body(list);
     }
 }

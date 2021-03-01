@@ -1,4 +1,7 @@
-package aronque.backend.entities;
+package aronque.backend.entities.pk;
+
+import aronque.backend.entities.Order;
+import aronque.backend.entities.Product;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -12,11 +15,11 @@ public class OrderItemPK implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ManyToOne
-    @JoinColumn(name = "order.id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "product.id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public Order getOrder() {

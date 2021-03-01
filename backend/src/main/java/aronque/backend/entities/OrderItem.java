@@ -1,5 +1,6 @@
 package aronque.backend.entities;
 
+import aronque.backend.entities.pk.OrderItemPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.EmbeddedId;
@@ -11,7 +12,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_order_item")
 public class OrderItem implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
